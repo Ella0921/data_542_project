@@ -1,9 +1,3 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
 # Data 542 Project - Group 20
 
 ## Yin-Wen Tsai, Haozhong Ji
