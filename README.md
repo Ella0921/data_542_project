@@ -161,8 +161,8 @@ Size × file type heatmaps / bar charts
 ```{bash}
 ├── RQ1.ipynb 
 ├── RQ2.ipynb 
-├── README.md 
-└── figures/        # (optional) saved plots from notebooks
+├── RQ3.ipynb 
+└── README.md 
 ```
 
 ------------------------------------------------------------------------
