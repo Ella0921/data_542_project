@@ -1,173 +1,184 @@
-📘 AIDev Mining Challenge – RQ1 & RQ2 Analysis
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
 
-This repository contains two analysis notebooks (RQ1.ipynb and RQ2.ipynb) for the AIDev Mining Challenge (MSR 2026).
-Both notebooks explore different aspects of AI-generated pull requests using the official AIDev dataset hosted on HuggingFace.
+# Data 542 Project - Group 20
 
-🧪 Research Questions
-RQ1 – AI Agent Usage Across Repositories
+## Yin-Wen Tsai, Haozhong Ji
 
-Research Question
-Do different AI coding agents get used in different types of repositories
+This repository contains two analysis notebooks (`RQ1.ipynb` and
+`RQ2.ipynb`) for the **AIDev Mining Challenge (MSR 2026)**.\
+Both notebooks explore different aspects of AI-generated pull requests
+using the official AIDev dataset hosted on HuggingFace.
 
-This notebook analyzes whether AI PRs created by different agents appear more frequently in repositories with different levels of
+------------------------------------------------------------------------
 
-popularity (measured by stars)
+## 🧪 Research Questions
 
-activity (measured by forks)
+### **RQ1 – AI Agent Usage Across Repositories**
 
-It uses repository metadata to group repos into tiers and compares agent distributions across those groups.
+**Research Question:**\
+*Do different AI coding agents get used in different types of
+repositories?*
 
-RQ2 – PR Size, File Type, and ReviewMerge Outcomes
+This notebook analyzes whether AI PRs created by different agents appear
+more frequently in repositories with different levels of:
 
-Research Question
-How do the size and dominant file type of AI pull requests relate to merge outcomes and review effort
+-   popularity (measured by stars)
 
-This notebook studies how AI PR characteristics influence
+-   activity (measured by forks)
 
-merge rate
+-   It uses repository metadata to group repos into tiers and compares
+    agent distributions across those groups.
 
-time to merge  close
+### **RQ2 – PR Size, File Type, and Review/Merge Outcomes**
 
-volume of review comments
+**Research Question:**\
+*How do the size and dominant file type of AI pull requests relate to
+merge outcomes and review effort?*
 
-PRs are grouped into size buckets and dominant file types, and metrics are compared.
+This notebook studies how AI PR characteristics influence:
 
-📂 Dataset
+-   merge rate
 
-Both notebooks use tables from the AIDev dataset
+-   time to merge / close
 
-all_pull_request.parquet
+-   volume of review comments
 
-all_repository.parquet
+PRs are grouped into **size buckets** and **dominant file types**, and
+metrics are compared.
 
-all_user.parquet (RQ1)
+## 📂 Dataset
 
-pr_commit_details.parquet (RQ2)
+Both notebooks use tables from the **AIDev dataset**:
 
-pr_review_comments.parquet (RQ2)
+-   `all_pull_request.parquet`
 
-Data is loaded directly via HuggingFace paths
+-   `all_repository.parquet`
 
-hfdatasetshao-liAIDevall_pull_request.parquet
+-   `all_user.parquet` (RQ1)
 
-📄 Notebook Summaries
-### 🔎 RQ1.ipynb – Agent Usage Across Popularity & Activity Levels
-Main Steps
+-   `pr_commit_details.parquet` (RQ2)
 
-Load PR, repository, and user tables
+-   `pr_review_comments.parquet` (RQ2)
 
-Filter to AI-generated PRs
+Data is loaded directly via HuggingFace paths:
 
-Non-null agent
+`{"hf://datasets/hao-li/AIDev/all_pull_request.parquet"}`
 
-Final state (merged or closed)
+------------------------------------------------------------------------
 
-Merge repository metadata
+## 📄 Notebook Summaries
 
-Compute repository groups
+### **🔎 RQ1.ipynb – Agent Usage Across Popularity & Activity Levels**
 
-Popularity tiers via stars (Low, Medium, High)
+#### **Main Steps**
 
-Activity tiers via forks (Low, Medium, High)
+1.  **Load PR, repository, and user tables**
 
-Compute agent distribution metrics
+2.  **Filter to AI-generated PRs**
 
-Visualize
+    -   Non-null `agent`
 
-Agent usage across popularity groups
+    -   Final state (`merged` or `closed`)
 
-Agent usage across activity groups
+3.  **Merge repository metadata**
 
-Outputs
+4.  **Compute repository groups**
 
-Distribution plots by agent × popularityactivity
+    -   Popularity tiers via stars (`Low`, `Medium`, `High`)
 
-Tables showing agent percentages in each bucket
+    -   Activity tiers via forks (`Low`, `Medium`, `High`)
 
-🔎 RQ2.ipynb – PR Size, File Type, and Outcomes
-Main Steps
+5.  **Compute agent distribution metrics**
 
-Load PR, repository, commit details, and review comments tables
+6.  **Visualize**
 
-Filter to AI-generated PRs and compute
+    -   Agent usage across popularity groups
 
-merge flag
+    -   Agent usage across activity groups
 
-time to merge  close
+#### **Outputs**
 
-Compute PR size
+-   Distribution plots by agent × popularity/activity
 
-Aggregate additions + deletions + total lines changed
+-   Tables showing agent percentages in each bucket
 
-Identify dominant file type per PR
+### **🔎 RQ2.ipynb – PR Size, File Type, and Outcomes**
 
-Based on max line changes by file type
+#### **Main Steps**
 
-Count review comments
+1.  **Load PR, repository, commit details, and review comments tables**
 
-Extract PR numbers from URLs
+2.  **Filter to AI-generated PRs** and compute:
 
-Merge all metrics into a unified PR table
+    -   merge flag
 
-Create size buckets
+    -   time to merge / close
 
-Tertiles Small, Medium, Large
+3.  **Compute PR size**
 
-Group and compare metrics
+    -   Aggregate additions + deletions + total lines changed
 
-merge rate
+4.  **Identify dominant file type per PR**
 
-median time to merge
+    -   Based on max line changes by file type
 
-average review comments
+5.  **Count review comments**
 
-PR count per category
+    -   Extract PR numbers from URLs
 
-Visualizations
+6.  **Merge all metrics into a unified PR table**
 
-Size vs merge rate
+7.  **Create size buckets**
 
-File type vs review comments
+    -   Tertiles: `Small`, `Medium`, `Large`
 
-Size × file type heatmaps  bar charts
+8.  **Group and compare metrics**
 
-Outputs
+    -   merge rate
 
-Summary tables by size_bucket × main_file_type
+    -   median time to merge
 
-Merge rate and review comment visualizations
+    -   average review comments
 
-📁 Repository Structure
-.
-├── RQ1.ipynb
-├── RQ2.ipynb
-├── README.md
-└── figures        # (optional) saved plots from notebooks
+    -   PR count per category
 
-🛠️ Environment & Dependencies
+9.  **Visualizations**
 
-These Python packages are required
+    -   Size vs merge rate
 
-pip install pandas numpy matplotlib seaborn pyarrow fastparquet fsspec huggingface_hub
+    -   File type vs review comments
 
+Size × file type heatmaps / bar charts
+
+**Outputs**
+
+-   Summary tables by `size_bucket` × `main_file_type`
+
+-   Merge rate and review comment visualizations
+
+------------------------------------------------------------------------
+
+## 📁 Repository Structure
+
+```{bash}
+├── RQ1.ipynb 
+├── RQ2.ipynb 
+├── README.md 
+└── figures/        # (optional) saved plots from notebooks
+```
+
+------------------------------------------------------------------------
+
+## 🛠️ Environment & Dependencies
+
+These Python packages are required:
+
+```{python}
+pip install pandas numpy matplotlib seaborn pyarrow fastparquet fsspec huggingface_hub 
+```
 
 Python 3.10+ is recommended.
-
-▶️ How to Run
-
-Ensure environment supports HuggingFace hf file system.
-
-Launch Jupyter
-
-jupyter lab
-
-
-Run
-
-RQ1.ipynb for repository-popularityagent analysis
-
-RQ2.ipynb for PR-size and file-type outcome analysis
-
-Export figures if needed (recommended for reports)
-
-plt.savefig(figuresplot_name.png)
